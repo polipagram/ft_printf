@@ -1,27 +1,33 @@
-#include"ft_printf.h"
-int ft_putchar(char c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kbouarfa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/27 04:35:49 by kbouarfa          #+#    #+#             */
+/*   Updated: 2024/11/27 04:35:54 by kbouarfa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+int	ft_putnbr(int nb)
 {
-	write(1, &c, 1);
-}
-int ft_putnbr(int nb)
-{
-	long n = nb;
-	if(n < 0)
+	int		count;
+	long	n;
+
+	count = 0;
+	n = nb;
+	if (n < 0)
 	{
-		ft_putchar('-');
+		count += ft_putchar('-');
 		n = -n;
 	}
-	if(n > 9)
+	if (n > 9)
 	{
-		ft_putnbr(n / 10);
+		count += ft_putnbr(n / 10);
 	}
-	ft_putchar(n % 10 + '0');
-	ft_putchar('\n');
+	count += ft_putchar((n % 10) + '0');
+	return (count);
 }
-int main ()
-{
-	ft_putnbr(5);
-	return (0);
-}
-
-	
